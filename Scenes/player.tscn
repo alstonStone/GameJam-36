@@ -80,4 +80,6 @@ shape = SubResource("RectangleShape2D_pqtlb")
 sprite_frames = SubResource("SpriteFrames_qap84")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.161423
+frame_progress = 0.377874
+
+[node name="Camera2D" type="Camera2D" parent="."]
