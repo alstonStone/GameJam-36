@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=3 uid="uid://dge0m8b2x0jke"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_hboab"]
+[ext_resource type="Texture2D" uid="uid://bigdxiqbgfvx" path="res://Assets/player/C300-1.png" id="1_ybtf3"]
+[ext_resource type="Texture2D" uid="uid://ctlthcqnkq0ws" path="res://Assets/player/C300-2.png" id="2_j0dif"]
+[ext_resource type="Texture2D" uid="uid://cp1xi1urmkmsk" path="res://Assets/player/C300-3.png" id="3_y82ut"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pqtlb"]
+size = Vector2(209, 332)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qap84"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ybtf3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_j0dif")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_j0dif")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_y82ut")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_j0dif")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_j0dif")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ybtf3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_ybtf3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_ybtf3")
+}, {
+"duration": 0.2,
+"texture": ExtResource("2_j0dif")
+}],
+"loop": true,
+"name": &"runLeft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_y82ut")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_y82ut")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_y82ut")
+}, {
+"duration": 0.2,
+"texture": ExtResource("2_j0dif")
+}],
+"loop": true,
+"name": &"runRight",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.05, 0.05)
+script = ExtResource("1_hboab")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8.5, 69)
+shape = SubResource("RectangleShape2D_pqtlb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qap84")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.161423
