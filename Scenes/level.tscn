@@ -2,40 +2,40 @@
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_fhn18"]
 [ext_resource type="PackedScene" uid="uid://dge0m8b2x0jke" path="res://Scenes/player.tscn" id="2_fa8fi"]
-[ext_resource type="Texture2D" uid="uid://p8b5pbrfpsgt" path="res://icon.svg" id="3_rybvt"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ximjf"]
-size = Vector2(521, 25)
+[ext_resource type="PackedScene" uid="uid://7oo0cjbsifmg" path="res://Scenes/bg_lvl_1.tscn" id="2_hp8l0"]
+[ext_resource type="PackedScene" uid="uid://qng0y61uhfsf" path="res://Scenes/Level_1.tscn" id="4_4h1x7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ibdiy"]
-size = Vector2(666, 20)
+size = Vector2(977, 20)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_fhn18")
 
+[node name="BG-LVL1" parent="." instance=ExtResource("2_hp8l0")]
+
+[node name="TileMap" parent="." instance=ExtResource("4_4h1x7")]
+
 [node name="Player" parent="." instance=ExtResource("2_fa8fi")]
-position = Vector2(230, 163)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(82, 253)
-shape = SubResource("RectangleShape2D_ximjf")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(79, 253)
-scale = Vector2(4.0625, 0.179688)
-texture = ExtResource("3_rybvt")
+position = Vector2(141, 160)
 
 [node name="DeathZone" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone"]
-position = Vector2(244, 298)
+position = Vector2(152, 290)
+shape = SubResource("RectangleShape2D_ibdiy")
+
+[node name="DeathZone2" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone2"]
+position = Vector2(1242, 295)
 shape = SubResource("RectangleShape2D_ibdiy")
 
 [node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(158, 41)
+position = Vector2(142, 156)
 
 [connection signal="body_entered" from="DeathZone" to="." method="_on_death_zone_body_entered"]
+[connection signal="body_entered" from="DeathZone2" to="." method="_on_death_zone_body_entered"]
