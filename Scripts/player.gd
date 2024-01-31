@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var gun = $Gun
+@onready var gun_sfx = $Gun/GunSfx
 @export var gravity = 400
 @export var speed = 125
 @export var jump_force = 250
@@ -9,6 +10,7 @@ extends CharacterBody2D
 func _physics_process(delta):
 	if Input.is_action_just_pressed("shoot"):
 		gun.play("fire")
+		gun_sfx.play()
 	if is_on_floor() == false:
 		velocity.y += gravity*delta
 		if velocity.y > 500:

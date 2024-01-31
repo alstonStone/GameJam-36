@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dge0m8b2x0jke"]
+[gd_scene load_steps=17 format=3 uid="uid://dge0m8b2x0jke"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_hboab"]
 [ext_resource type="Texture2D" uid="uid://bigdxiqbgfvx" path="res://Assets/player/C300-1.png" id="1_ybtf3"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dcbt8ju61d40n" path="res://Assets/player/C300-Out.png" id="5_ad62o"]
 [ext_resource type="Texture2D" uid="uid://bs66tiahfnj1m" path="res://Assets/player/gun/Gun.png" id="6_idvge"]
 [ext_resource type="Script" path="res://Scripts/Gun.gd" id="7_dcy2t"]
+[ext_resource type="AudioStream" uid="uid://c5elxiclsxtks" path="res://Assets/sfx/csgo-desert-eagle-firing-sound-effect-145410.wav" id="8_nqubm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pqtlb"]
 size = Vector2(209, 332)
@@ -139,3 +140,6 @@ animation = &"fire"
 centered = false
 offset = Vector2(-60, -254.907)
 script = ExtResource("7_dcy2t")
+
+[node name="GunSfx" type="AudioStreamPlayer2D" parent="Gun"]
+stream = ExtResource("8_nqubm")
