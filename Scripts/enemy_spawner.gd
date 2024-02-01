@@ -12,4 +12,4 @@ func spawn_enemy():
 	var random_spawn_position = spawn_positions_array.pick_random()
 	var enemy_instance = ghost_scene.instantiate()
 	enemy_instance.global_position = random_spawn_position.global_position
-	add_child(enemy_instance)
+	get_tree().get_root().add_child(enemy_instance)

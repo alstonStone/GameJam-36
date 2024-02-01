@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var gun = $Gun
 @onready var gun_sfx = $Gun/GunSfx
+@onready var plauer_area = $PlayerArea
 @export var gravity = 400
 @export var speed = 125
 @export var jump_force = 250
@@ -25,6 +26,7 @@ func _physics_process(delta):
 	velocity.x = direction * speed
 	move_and_slide()
 	update_animations(direction)
+	Global.player_position = plauer_area.global_position
 
 func update_animations(direction):
 	if direction == 0:
@@ -40,3 +42,10 @@ func update_animations(direction):
 	#else:
 		#if direction != 0:
 			#animated_sprite.play("run")
+
+
+
+
+
+func _on_player_area_area_entered(area):
+	$".".queue_free()

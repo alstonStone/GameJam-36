@@ -4,10 +4,10 @@
 [ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_irf2b"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_58udr"]
-radius = 11.0
-height = 304.0
+radius = 16.0
+height = 128.0
 
-[node name="Bullet" type="Area2D"]
+[node name="Bullet" type="Area2D" groups=["bullet"]]
 light_mask = 16
 visibility_layer = 8
 script = ExtResource("1_irf2b")
@@ -19,7 +19,8 @@ texture = ExtResource("1_5f0q8")
 offset = Vector2(-48, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 0)
+light_mask = 8
+visibility_layer = 16
 rotation = 1.5708
 scale = Vector2(0.125, 0.125)
 shape = SubResource("CapsuleShape2D_58udr")
@@ -28,5 +29,4 @@ shape = SubResource("CapsuleShape2D_58udr")
 position = Vector2(-22, 0)
 scale = Vector2(0.25, 0.25)
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

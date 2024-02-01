@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://dge0m8b2x0jke"]
+[gd_scene load_steps=19 format=3 uid="uid://dge0m8b2x0jke"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_hboab"]
 [ext_resource type="Texture2D" uid="uid://bigdxiqbgfvx" path="res://Assets/player/C300-1.png" id="1_ybtf3"]
+[ext_resource type="Script" path="res://Scripts/PlayerArea.gd" id="2_27yda"]
 [ext_resource type="Texture2D" uid="uid://ctlthcqnkq0ws" path="res://Assets/player/C300-2.png" id="2_j0dif"]
 [ext_resource type="Texture2D" uid="uid://cp1xi1urmkmsk" path="res://Assets/player/C300-3.png" id="3_y82ut"]
 [ext_resource type="Texture2D" uid="uid://dcbt8ju61d40n" path="res://Assets/player/C300-Out.png" id="5_ad62o"]
@@ -11,6 +12,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pqtlb"]
 size = Vector2(209, 332)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7261e"]
+size = Vector2(220, 355)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qap84"]
 animations = [{
@@ -115,16 +119,27 @@ animations = [{
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.05, 0.05)
 collision_layer = 2
-collision_mask = 5
+collision_mask = 21
 script = ExtResource("1_hboab")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(8.5, 69)
 shape = SubResource("RectangleShape2D_pqtlb")
 
+[node name="PlayerArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("2_27yda")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]
+visibility_layer = 9
+position = Vector2(10, 77.5)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_7261e")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qap84")
-animation = &"run"
+animation = &"idle"
 autoplay = "idle"
 script = SubResource("GDScript_76j4f")
 
@@ -143,3 +158,5 @@ script = ExtResource("7_dcy2t")
 
 [node name="GunSfx" type="AudioStreamPlayer2D" parent="Gun"]
 stream = ExtResource("8_nqubm")
+
+[connection signal="area_entered" from="PlayerArea" to="." method="_on_player_area_area_entered"]
